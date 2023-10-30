@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from connection.conexaoDB import conn
 
 app = Flask(__name__)
+app.secret_key = 'Flask-Login'
 
 
 @app.route('/')
