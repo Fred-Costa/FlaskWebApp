@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> LOGIN </title>
+{% endblock %}
+
+{% block body %}
+<h2>Formulário de Login</h2>
+<form action="/login" method="post">
+    <label for="user">Utilizador:</label>
+    <input type="text" id="user" name="user" placeholder="Nome de utilizador" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Palavra-passe" required><br><br>
+
+    <input type="submit" value="Entrar">
+    <a href="/registoLogin" class="register-button">Registar</a>
+</form>
+{% endblock %}

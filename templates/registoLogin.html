@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Registo Utilizador </title>
+{% endblock %}
+
+{% block body %}
+<h2>Registe uma Conta Nova</h2>
+<form action="/registoLogin" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Primeiro Nome" required><br><br>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+    <label for="user">Nome de Utilizador:</label>
+    <input type="text" id="user" name="user" placeholder="Nome de Utilizador" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+
+    <input type="submit" value="Registar">
+</form>
+{% endblock %}
