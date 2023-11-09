@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from connection.conexaoDB import conn
 
 app = Flask(__name__)
@@ -22,7 +22,6 @@ def listar_produtos():
     cursor.execute(sql)
 
     produtos = cursor.fetchall()
-
     conn.close()
 
     return render_template('index.html', produtos=produtos)
