@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for
 from connection.conexaoDB import conn
 
 app = Flask(__name__)
-app.secret_key = 'Flask-Login'
 
 
 @app.route('/')
@@ -11,8 +10,22 @@ def login():
 
 
 @app.route('/index')
-def index():
-    return render_template('index.html')
+def listar_produtos():
+    cursor = conn.cursor()
+
+    sql = """
+            SELECT p.nome, p.preco, c.nome
+            FROM produtos p
+            JOIN categorias c 
+            ON p.id_categoria = c.id
+          """
+    cursor.execute(sql)
+
+    produtos = cursor.fetchall()
+
+    conn.close()
+
+    return render_template('index.html', produtos=produtos)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,7 +51,7 @@ def checkUser():
 
         if dados_user is not None and dados_user[0] == user and dados_user[1] == password:
             # se os inputs do utilizador forem corretos, o login foi bem sucedido
-            return redirect(url_for('index'))
+            return redirect(url_for('listar_produtos'))
         else:
             return render_template('erro.html')
 
