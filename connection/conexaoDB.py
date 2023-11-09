@@ -5,7 +5,7 @@ configuracao_DB = {
     'user': 'root',
     'password': 'Curso123',
     'host': '127.0.0.1',
-    'database': 'login'
+    'database': 'db_app_flask'
 }
 
 try:
