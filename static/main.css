@@ -126,3 +126,43 @@ input[type="email"] {
     font-size: 16px;
 }
 
+table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+/* main.css */
+
+/* ... (seu código existente) */
+
+.logout-button {
+    background-color: #dc3545;  /* Vermelho, semelhante ao link de sair do Bootstrap */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;  /* Removendo a decoração de texto para parecer um botão */
+    display: inline-block;  /* Permite definir largura e altura */
+    width: auto;  /* Ajuste a largura conforme necessário */
+    margin-top: 10px;  /* Adapte a margem conforme necessário */
+}
+
+.logout-button:hover {
+    background-color: #c82333;  /* Tom mais escuro ao passar o mouse */
+    text-decoration: none;
+}
+
+
