@@ -1,5 +1,3 @@
-/* main.css */
-
 /* Estilos gerais para os elementos comuns a todas as páginas */
 body {
     font-family: 'Arial', sans-serif;
@@ -142,10 +140,6 @@ table {
         background-color: #f2f2f2;
     }
 
-/* main.css */
-
-/* ... (seu código existente) */
-
 .logout-button {
     background-color: #dc3545;  /* Vermelho, semelhante ao link de sair do Bootstrap */
     color: #fff;
@@ -165,4 +159,20 @@ table {
     text-decoration: none;
 }
 
+.create-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    width: auto;
+    margin-top: 10px;
+}
 
+.create-button:hover {
+    text-decoration: none;
+}
