@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Registo de Produtos </title>
+{% endblock %}
+
+
+{% block body %}
+<h3> Registo de um Novo Produto </h3>
+
+<form action="/registoProduto" method="post">
+    <label for="nomeProduto">Nome do Produto:</label>
+    <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Nome do Produto" required><br><br>
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" step="0.01" placeholder="Preço" required><br><br>
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="categoria" required>
+        {% for categoria in categorias %}
+            <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Registar Produto">
+</form>
+{% endblock %}
