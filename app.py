@@ -22,7 +22,6 @@ def listar_produtos():
     cursor.execute(sql)
 
     produtos = cursor.fetchall()
-    conn.close()
 
     return render_template('index.html', produtos=produtos)
 
@@ -45,9 +44,6 @@ def checkUser():
         # recupera os valores e guarda-os na variável
         dados_user = cursor.fetchone()
 
-        # fecha o cursor
-        cursor.close()
-
         if dados_user is not None and dados_user[0] == user and dados_user[1] == password:
             # se os inputs do utilizador forem corretos, o login foi bem sucedido
             return redirect(url_for('listar_produtos'))
@@ -68,7 +64,7 @@ def checkCredenciais(email, user):
         # credenciais já existem
         return True
     else:
-        # credenciais não existemx\
+        # credenciais não existem
         return False
 
 
@@ -103,6 +99,35 @@ def registo():
             cursor.close()
 
             return redirect(url_for('login'))
+
+
+@app.route('/registoProduto', methods=['GET', 'POST'])
+def registoProduto():
+
+    with conn.cursor() as cursor:
+
+        #
+        sqlCategoria = 'SELECT * FROM categorias'
+        cursor.execute(sqlCategoria)
+        categorias = cursor.fetchall()
+
+        if request.method == 'POST':
+            # guardar os inputs do formulario em variaveis
+            nomeProduto = request.form['nomeProduto']
+            preco = request.form['preco']
+            categoriaID = request.form['categoria']
+
+            sql = 'INSERT INTO produtos (nome, preco, id_categoria) VALUES (%s, %s, %s)'
+            try:
+                cursor.execute(sql, (nomeProduto, preco, categoriaID))
+                conn.commit()
+            except Exception as erro:
+                conn.rollback()
+                print(f'Erro em registar o novo produto: {erro}')
+
+            return redirect(url_for('listar_produtos'))
+
+        return render_template('createProduto.html', categorias=categorias)
 
 
 if __name__ == "__main__":
