@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Apagar Produtos </title>
+{% endblock %}
+
+{% block body %}
+<h2> APAGAR PRODUTOS </h2>
+
+<form action="/deleteProduto" method="post">
+    <label for="produto">Escolha o produto para apagar: </label>
+    <select name="produto" id="produto">
+        {% for produto in produtos %}
+            <option value="{{ produto[0] }}">{{ produto[1] }}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+
+    <button type="submit"> Apagar Produto </button>
+</form>
+
+{% endblock %}
