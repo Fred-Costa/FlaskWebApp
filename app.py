@@ -103,10 +103,7 @@ def registo():
 
 @app.route('/registoProduto', methods=['GET', 'POST'])
 def registoProduto():
-
     with conn.cursor() as cursor:
-
-        #
         sqlCategoria = 'SELECT * FROM categorias'
         cursor.execute(sqlCategoria)
         categorias = cursor.fetchall()
@@ -128,6 +125,30 @@ def registoProduto():
             return redirect(url_for('listar_produtos'))
 
         return render_template('createProduto.html', categorias=categorias)
+
+
+@app.route('/deleteProduto', methods=['GET', 'POST'])
+def deleteProduto():
+    # Se o request for apenas de GET - mostra os produtos
+    with conn.cursor() as cursor:
+        sqlProdutos = "SELECT * FROM produtos"
+        cursor.execute(sqlProdutos)
+        produtos = cursor.fetchall()
+
+        if request.method == 'POST':
+            idProduto = request.form['produto']
+
+            sql = 'DELETE FROM produtos WHERE id = (%s)'
+            try:
+                cursor.execute(sql, (idProduto,))
+                conn.commit()
+            except Exception as erro:
+                conn.rollback()
+                print(f"Erro em apagar o produto: {erro}")
+
+            return redirect(url_for('listar_produtos'))
+
+    return render_template('deleteProduto.html', produtos=produtos)
 
 
 if __name__ == "__main__":
